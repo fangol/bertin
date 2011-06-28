@@ -1,6 +1,5 @@
 (ns bertin.core
   (:gen-class)
-  (:require clojure.contrib.repl-utils)
   (:import (org.eclipse.swt SWT)
            (org.eclipse.swt.widgets Display Shell)
            (org.eclipse.swt.layout FillLayout)
@@ -12,6 +11,7 @@
         browser (Browser. shell SWT/NONE)]
     (.setLayout shell (FillLayout.))
     (.open shell)
+    (.setUrl browser (str "file://" (.getCanonicalPath (clojure.java.io/file "." "bertin.html"))))
     (loop []
       (if (.isDisposed shell)
         (.dispose display)
